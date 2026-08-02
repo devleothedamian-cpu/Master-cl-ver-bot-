@@ -75,7 +75,7 @@ git clone https://github.com/devleothedamian-cpu/Master-cl-ver-bot-.git
 
 ## 3️⃣ Entra al directorio del bot
 ```bash
-cd master-clover-bot 
+cd Master-cl-ver-bot-
 ```
 
 ## 4️⃣ Instala módulos necesarios
