@@ -81,7 +81,7 @@ const handler = async (msg, { conn, wa }) => {
 
     const metadata = {
       packname: `✨ Lo Mandó Hacer: ${senderName}`,
-      author: `🦋Bot Creador: ❦La Suki 3.0 Bot❦\n🛠️ Desarrollado por: Russell XZ 💻\n📅 ${fechaStr}`,
+      author: `🔧 Bot Creador: MASTER CLOVET BOT \n Desarrollado por: Dev leo 💻\n📅 ${fechaStr}`,
     };
 
     const outSticker =
@@ -206,4 +206,4 @@ async function addExif(webpBuffer, metadata) {
   await img.save(tmpOut);
   fs.unlinkSync(tmpIn);
   return tmpOut;
-}
+      }
