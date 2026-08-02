@@ -9,7 +9,6 @@ import ffmpeg from 'fluent-ffmpeg';
 import webp from 'node-webpmux';
 
 // === Carpeta temporal ===
-import { canal } from "../disenos.js";
 const tempFolder = path.join(__dirname, "../tmp/");
 if (!fs.existsSync(tempFolder)) fs.mkdirSync(tempFolder, { recursive: true });
 
@@ -49,7 +48,7 @@ function randomFileName(ext) {
 // === Comando principal ===
 const handler = async (msg, { conn, wa }) => {
   const chatId = msg.key.remoteJid;
-  const pref = global.prefixes?.[0] || ".";
+  const pref = (typeof conn !== "undefined" && conn && conn.subPrefixes ? conn.subPrefixes : global.prefixes)?.[0] || ".";
   const ctx = msg.message?.extendedTextMessage?.contextInfo;
   const quotedRaw = ctx?.quotedMessage;
   const quoted = quotedRaw ? unwrapMessage(quotedRaw) : null;
@@ -58,7 +57,6 @@ const handler = async (msg, { conn, wa }) => {
     return conn.sendMessage(
       chatId,
       {
-        contextInfo: canal(),
         text: `⚠️ *Responde a una imagen o video para crear un sticker.*\n\n✳️ Ejemplo:\n${pref}s (respondiendo a una imagen)`,
       },
       { quoted: msg }
@@ -83,7 +81,7 @@ const handler = async (msg, { conn, wa }) => {
 
     const metadata = {
       packname: `✨ Lo Mandó Hacer: ${senderName}`,
-      author: `🦋Bot Creador: ❦La Suki 3.0 Bot❦\n🛠️ Desarrollado por: Russell XZ 💻\n📅 ${fechaStr}`,
+      author: `🔧 Bot Creador: MASTER CLOVET BOT \n Desarrollado por: Dev leo 💻\n📅 ${fechaStr}`,
     };
 
     const outSticker =
@@ -102,7 +100,7 @@ const handler = async (msg, { conn, wa }) => {
     console.error("[sticker] Error:", err);
     await conn.sendMessage(
       chatId,
-      { contextInfo: canal(), text: "❌ *Hubo un error al crear el sticker.*" },
+      { text: "❌ *Hubo un error al crear el sticker.*" },
       { quoted: msg }
     );
     await conn.sendMessage(chatId, { react: { text: "❌", key: msg.key } });
@@ -208,4 +206,4 @@ async function addExif(webpBuffer, metadata) {
   await img.save(tmpOut);
   fs.unlinkSync(tmpIn);
   return tmpOut;
-}
+  }
